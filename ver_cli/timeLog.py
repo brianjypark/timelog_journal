@@ -1,4 +1,3 @@
-from datetime import datetime, date, timedelta
 import database
 
 if __name__ == "__main__":
@@ -11,15 +10,8 @@ if __name__ == "__main__":
     # database.dropDuration()
     # database.createDuration()
 
-    # # mock data
-    # database.addActivity('12:00','13:30',"food","this is a note")
-    # database.addActivity('13:31','14:00',"study","this is another note")
-    # database.addActivity('14:00','15:00',"workout","this is another random note")
-    # database.addActivity('15:00','17:00',"food","this is another random note")
-    # database.addActivity('17:00','19:00',"study","this is another random note")
-    # database.addActivity('19:00','21:00',"game","this is another random note")
-    # database.addActivity('21:00','23:00',"study","this is another random note")
-    # database.addActivity('23:00','23:59',"prep","this is another random note")
+    # mock data
+    # database.createMock()
 
     try:
         while userInput != 'q':
@@ -39,7 +31,7 @@ if __name__ == "__main__":
                 database.fetchActivity()
                 edit_idx = int(input("Please enter the activity id # you wish to edit: "))
                 while not 0 < edit_idx <= database.getCount():
-                    edit_idx = int(input("Invalid range: Please enter the activity id # you wish to delete: "))
+                    edit_idx = int(input("Invalid range. Please enter the activity id # you wish to edit: "))
                 items = list(database.fetchOne(edit_idx))
                 print(f"Start: {items[0]}\nEnd: {items[1]}\nCategory: {items[2]}\nNote: {items[3]}\n")
                 user_input = input(("Please select the item you would like to edit\n Start: 0\tEnd: 1\tCategory: 2\t Note: 3\nEnter 'q' to cancel "))
@@ -55,7 +47,7 @@ if __name__ == "__main__":
                 database.fetchActivity()
                 del_item = int(input("Please enter the activity id # you wish to delete: "))
                 while not 0 < del_item <= database.getCount():
-                    del_item = int(input("Invalid range: Please enter the activity id # you wish to delete: "))
+                    del_item = int(input("Invalid range. Please enter the activity id # you wish to delete: "))
                 database.deleteActivity(del_item)
             elif userInput == '4': # Print all log entry 
                 database.fetchActivity()
